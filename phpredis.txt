@@ -1,6 +1,13 @@
 # Redis php module setup on php-farm image
 
 
+[ec2-user@ip-172-31-24-57 ~]$ sudo docker ps
+CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS              PORTS                                                                     NAMES
+bded45080d0e        xidam/phpfarm_phpunit:jessie     "/bin/bash /run.sh"      49 minutes ago      Up 49 minutes       8052-8054/tcp, 0.0.0.0:8055->8055/tcp, 8056/tcp, 0.0.0.0:8070->8070/tcp   ecs-redis-php-7-phpfarm-c8cade8d9bb1efb75000
+a0c9f60b78d5        redis                            "docker-entrypoint.sh"   49 minutes ago      Up 49 minutes       0.0.0.0:6379->6379/tcp                                                    ecs-redis-php-7-redis-d4b1829183f5fba6ad01
+6f0ddc0fc47a        amazon/amazon-ecs-agent:latest   "/agent"                 3 hours ago         Up 3 hours                                                                                    ecs-agent
+
+
 root@2fe101541b3b:~# git clone https://github.com/phpredis/phpredis.git
 root@2fe101541b3b:~/phpredis# cd phpredis
 root@2fe101541b3b:~/phpredis# phpize-5.5
