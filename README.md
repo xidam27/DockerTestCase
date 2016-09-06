@@ -86,6 +86,7 @@ Quick test with phpunit:
 root@bded45080d0e:~# wget https://phar.phpunit.de/phpunit-old.phar -O phpunit
 
 "User.php"
+```
 <?php
 class User {
     protected $name;
@@ -102,8 +103,10 @@ class User {
         return "Hello world!";
     }
 }
-
+```
 "UserTest.php"
+
+```
 <?php
 require_once "User.php";
 
@@ -120,7 +123,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 }
-
+```
 root@bded45080d0e:/var/www# php-5.5 phpunit UserTest.php
 PHPUnit 4.8.27 by Sebastian Bergmann and contributors.
 
