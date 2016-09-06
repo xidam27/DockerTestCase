@@ -10,12 +10,12 @@ https://github.com/splitbrain/docker-phpfarm
 [ec2-user ~]$ sudo usermod -a -G docker ec2-user
 
 For the sake of simplicity I have used splitbrain's repo to pull a prebuilt image that runs multiple versions of PHP in parallel.
-
+```
 [ec2-user ~]$ 
 [ec2-user ~]$ docker pull splitbrain/phpfarm:jessie
 [ec2-user ~]$ echo "<?php echo 'Current PHP version: ' . phpversion(); ?>" > index.php
 [ec2-user ~]$ docker run --rm -t -i -e APACHE_UID=$UID -v $PWD:/var/www:rw -p 8052:8052 -p 8053:8053 -p 8054:8054 -p 8055:8055 -p 8056:8056p 8070:8070 splitbrain/phpfarm:jessie
-
+```
 The above commands will map the current working forlder to /var/www on the container and maps localport according to the PHP version it serves.
 
 Test #1
@@ -38,7 +38,8 @@ Current PHP version: 7.0.4
 ```
 
 Test #2
-```GET http://54.201.163.38:8055/
+```
+GET http://54.201.163.38:8055/
 >
 200 OK
 Connection: close
