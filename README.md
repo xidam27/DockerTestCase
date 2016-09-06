@@ -19,7 +19,7 @@ For the sake of simplicity I have used splitbrain's repo to pull a prebuilt imag
 The above commands will map the current working forlder to /var/www on the container and maps localport according to the PHP version it serves.
 
 Test #1
-
+```
 $ GET -Sse http://54.201.163.38:8070/
 >
 200 OK
@@ -35,9 +35,10 @@ Client-Transfer-Encoding: chunked
 X-Powered-By: PHP/7.0.4
 
 Current PHP version: 7.0.4
+```
 
 Test #2
-GET http://54.201.163.38:8055/
+```GET http://54.201.163.38:8055/
 >
 200 OK
 Connection: close
@@ -52,8 +53,7 @@ Client-Transfer-Encoding: chunked
 X-Powered-By: PHP/5.5.33
 
 Current PHP version: 5.5.33
-<<<
-
+```
 
 As you can see the last two digits of the destination port represents the PHP version.
 
