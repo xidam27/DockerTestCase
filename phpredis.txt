@@ -1,0 +1,25 @@
+# Redis php module setup on php-farm image
+
+
+root@2fe101541b3b:~# git clone https://github.com/phpredis/phpredis.git
+root@2fe101541b3b:~/phpredis# cd phpredis
+root@2fe101541b3b:~/phpredis# phpize-5.5
+root@2fe101541b3b:~/phpredis# ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.5
+root@2fe101541b3b:~/phpredis# make install
+
+extension=redis.so => /phpfarm/inst/php-5.5.33/lib/php.ini
+
+root@bded45080d0e:/var/www# php-5.5 /root/phpredis/tests/TestRedis.php
+
+[ec2-user@ip-172-31-24-57 ~]$ sudo docker exec -i -t bded45080d0e bash
+root@bded45080d0e:/var/www# php-5.5 /root/phpredis/tests/TestRedis.php
+Note: these tests might take up to a minute. Don't worry :-)
+Testing class Redis
+testMinimumVersion         [PASSED]
+testPing                   [PASSED]
+testPipelinePublish        [PASSED]
+testPubSub                 [PASSED]
+testBitsets                [PASSED]
+[...]
+
+All tests passed. \o/

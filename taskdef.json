@@ -1,0 +1,90 @@
+{
+  "requiresAttributes": [
+    {
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+    }
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:302846787660:task-definition/redis-php:7",
+  "networkMode": "bridge",
+  "status": "ACTIVE",
+  "revision": 7,
+  "taskRoleArn": null,
+  "containerDefinitions": [
+    {
+      "volumesFrom": [],
+      "memory": 600,
+      "extraHosts": null,
+      "dnsServers": null,
+      "disableNetworking": null,
+      "dnsSearchDomains": null,
+      "portMappings": [
+        {
+          "hostPort": 6379,
+          "containerPort": 6379,
+          "protocol": "tcp"
+        }
+      ],
+      "hostname": null,
+      "essential": true,
+      "entryPoint": null,
+      "mountPoints": [],
+      "name": "redis",
+      "ulimits": null,
+      "dockerSecurityOptions": null,
+      "environment": [],
+      "links": null,
+      "workingDirectory": null,
+      "readonlyRootFilesystem": null,
+      "image": "redis",
+      "command": null,
+      "user": null,
+      "dockerLabels": null,
+      "logConfiguration": null,
+      "cpu": 0,
+      "privileged": null,
+      "memoryReservation": 128
+    },
+    {
+      "volumesFrom": [],
+      "memory": 300,
+      "extraHosts": null,
+      "dnsServers": null,
+      "disableNetworking": null,
+      "dnsSearchDomains": null,
+      "portMappings": [
+        {
+          "hostPort": 8055,
+          "containerPort": 8055,
+          "protocol": "tcp"
+        },
+        {
+          "hostPort": 8070,
+          "containerPort": 8070,
+          "protocol": "tcp"
+        }
+      ],
+      "hostname": null,
+      "essential": true,
+      "entryPoint": null,
+      "mountPoints": [],
+      "name": "phpfarm",
+      "ulimits": null,
+      "dockerSecurityOptions": null,
+      "environment": [],
+      "links": null,
+      "workingDirectory": null,
+      "readonlyRootFilesystem": null,
+      "image": "xidam/phpfarm_phpunit:jessie",
+      "command": null,
+      "user": null,
+      "dockerLabels": null,
+      "logConfiguration": null,
+      "cpu": 0,
+      "privileged": null,
+      "memoryReservation": 128
+    }
+  ],
+  "volumes": [],
+  "family": "redis-php"
+}
