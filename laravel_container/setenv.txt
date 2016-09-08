@@ -1,0 +1,8 @@
+setenv.txt
+
+whenever run php it should point to the right version of it.
+/home/robert/bin/php executes php set in PHPPATH
+
+	PHPVER=php55; ./test.php  aerg
+	#!/usr/bin/env php
+	echo "Done"

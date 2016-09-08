@@ -1,0 +1,5 @@
+bash_profile
+
+if [ -d ~/.composer/vendor/bin ]; then
+   PATH=$PATH:~/.composer/vendor/bin
+fi
