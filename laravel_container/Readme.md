@@ -94,7 +94,7 @@ INSTALLING LARAVEL
 ```
 # composer global require "laravel/installer"
 ```
-INSTALLING PHPUNIT (NOT NEEDED IT)
+INSTALLING PHPUNIT (NOT NECESSARY, LARAVEL INCLUDES IT)
 ```
 # wget https://phar.phpunit.de/phpunit.phar
 # chmod +x phpunit.phar
