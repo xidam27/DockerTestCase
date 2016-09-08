@@ -252,6 +252,7 @@ PHPUnit 5.5.4 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 7.0.10
 Configuration: /var/www/framework/phpunit.xml
+'''
 
 ```
 .............................................................   61 / 2426 (  2%)
@@ -297,6 +298,7 @@ Configuration: /var/www/framework/phpunit.xml
 
 Time: 17.41 seconds, Memory: 76.00MB
 ```
+'''
 
 There were 10 errors:
 
