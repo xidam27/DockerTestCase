@@ -1,12 +1,13 @@
 Hello Abdul,
 
-First of all, I am sorry over the confusion. I did not realize your were referring to https://github.com/laravel/framework/tree/5.3/tests folder until I discovered it. I did not know I was missing something.
+First of all, I am sorry over the confusion, I did not realize your were referring to https://github.com/laravel/framework/tree/5.3/tests folder until I discovered it. 
 
-I managed to build a docker image with multiple php versions and with php-version tool to switch between them.
-Unfortunately the current version of phpunit is only compatible with PHP version >5.6, so I could only run the tests using version 7.0.10.
+I did not know I was missing something, but now I managed to build a docker image with multiple php versions and with php-version tool to switch between them. Unfortunately the current version of phpunit is only compatible with PHP version >5.6, so I could only run the tests using version 7.0.10.
 
 I decided to build a new image based on Ubuntu since the compilation of the PHP takes too long to run it each time you start a container.
 It would be even better to map a local folder that contains the compiled versions of the PHP to the container to keep the image size maintainable.
+
+I will need to figure out the best practices.
 
 
 RUN UBUNTU AND REDIS CONTAINER
