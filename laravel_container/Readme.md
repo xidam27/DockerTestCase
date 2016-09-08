@@ -19,10 +19,11 @@ RUN UBUNTU AND REDIS CONTAINER
 ALL WORKED IS DONE ON THE UBUNTU CONTAINER
 
 INSTALL REQUIRED PACKAGES FOR BUILDING PHP WITH MOST OF THE OPTIONS
+```
 # apt update && apt install -y gcc libxml2-dev libssl-dev libsslcommon2-dev pkg-config libbz2-dev libjpeg-dev libpng12-dev libfreetype6-dev libmcrypt-dev libcurl3 libcurl4-openssl-dev libtidy-dev libldb-dev libxslt1-dev git curl vim autoconf libmemcached 
-
 # ver=5.5.6; sh ./buildphp.sh $ver && cd /tmp/src/php-${ver}/ && make install
 # ver=7.0.10; sh ./buildphp.sh $ver && cd /tmp/src/php-${ver}/ && make install
+```
 
 CHECKING IF EVERYTHING IS IN PLACE
 ```
