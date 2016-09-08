@@ -10,11 +10,11 @@ It would be even better to map a local folder that contains the compiled version
 
 
 RUN UBUNTU AND REDIS CONTAINER
+'''
 # docker run -d ubuntu
 # docker run -p 6379:6379 redis
-
 # docker exec -it ubuntu_cont_id bash
-
+'''
 
 ALL WORKED IS DONE ON THE UBUNTU CONTAINER
 
@@ -25,29 +25,33 @@ INSTALL REQUIRED PACKAGES FOR BUILDING PHP WITH MOST OF THE OPTIONS
 # ver=7.0.10; sh ./buildphp.sh $ver && cd /tmp/src/php-${ver}/ && make install
 
 CHECKING IF EVERYTHING IS IN PLACE
+'''
 # ls -la $HOME/.phps/
 total 16
 drwxr-xr-x  4 root root 4096 Sep  7 17:03 .
 drwx------  5 root root 4096 Sep  7 16:58 ..
 drwxr-xr-x 10 root root 4096 Sep  7 16:25 5.5.6
 drwxr-xr-x  9 root root 4096 Sep  7 17:03 7.0.10
-
+'''
 
 INSTALL PHP-VERSION
-
-% mkdir -p $HOME/local/php-version # or your place of choice
-% cd !$
-% curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz --strip 1
+'''
+# mkdir -p $HOME/local/php-version # or your place of choice
+# cd !$
+# curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz --strip 1
 source $HOME/local/php-version/php-version.sh && php-version 5
 # php-version
 * 5.5.6
   7.0.10
-
+'''
 INSTALL MEMCACHED FOR PHP 5.5
+'''
 # php-version 5
 # pecl install memcache
+'''
 
 INSTALL MEMCACHED FOR PHP 7.0
+'''
 # php-version 7
 # git clone https://github.com/php-memcached-dev/php-memcached.git
 # git checkout php7
@@ -58,9 +62,10 @@ INSTALL MEMCACHED FOR PHP 7.0
 
 
 for i in `ls $HOME/.phps/ `; do echo "extension=memcached.so" >> $HOME/.phps/${i}/etc/php.ini; done;
-
+'''
 
 INSTALLING PHPREDIS FOR PHP 5.5
+'''
 # ver=5.5.6; 
 # php-version $ver 
 # git clone https://github.com/phpredis/phpredis.git 
@@ -70,36 +75,43 @@ INSTALLING PHPREDIS FOR PHP 5.5
 # make && make install 
 # echo "extension=redis.so" >> $HOME/.phps/${ver}/etc/php.ini 
 # cd .. && rm -rf phpredis 
+'''
 
 INSTALLING PHPREDIS FOR PHP 7.0.10
- ver=7.0.10; 
- php-version $ver
- pecl install redis
- echo "extension=redis.so" >> $HOME/.phps/${ver}/etc/php.ini 
-
+'''
+# ver=7.0.10; 
+# php-version $ver
+# pecl install redis
+# echo "extension=redis.so" >> $HOME/.phps/${ver}/etc/php.ini 
+'''
 INSTALLING COMPOSER
+'''
 # curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+'''
 
 INSTALLING LARAVEL
+'''
 # composer global require "laravel/installer"
-
+'''
 INSTALLING PHPUNIT (NOT NEEDED IT)
+'''
 # wget https://phar.phpunit.de/phpunit.phar
 # chmod +x phpunit.phar
 # mv phpunit.phar /usr/local/bin/phpunit
 # phpunit --version
-
+'''
 CREATING NEW PROJECT
+'''
 # cd /var/www/
 # git clone https://github.com/laravel/framework.git # downloads the tests folder, but need vendor folder. I will get it from a new project
 # mkdir laratemp && cd $_
 # composer create-project --prefer-dist laravel/framework
 # mv framework/vendor ../framework/ && cd $_
-
+'''
 need to uncomment redis env variables in phpunit.xml to set the IP of redis container, later I will TODO
 
 DEBUG #1
-
+'''
 rob@c7a9a7746d7e:/var/www/framework/framework$ phpunit
 PHPUnit 5.5.4 by Sebastian Bergmann and contributors.
 
@@ -121,12 +133,15 @@ Failed asserting that exception of type "PHPUnit_Framework_Error_Notice" is thro
 2) SupportCollectionTest::testArrayAccessOffsetUnset
 Failed asserting that exception of type "PHPUnit_Framework_Error_Notice" is thrown.
 
-
+'''
 TROUBLESHOOT #1
+'''
 # for i in `ls $HOME/.phps/ `; do echo "error_reporting = E_ALL" >> $HOME/.phps/${ver}/etc/php.ini; done;
-
+'''
+(It worked)
 
 DEBUG #2
+'''
 rob@c7a9a7746d7e:/var/www/framework/framework$ phpunit
 PHPUnit 5.5.4 by Sebastian Bergmann and contributors.
 
@@ -180,12 +195,14 @@ OK (2426 tests, 5470 assertions)
 rob@c7a9a7746d7e:/var/www/framework/framework$
 
 
-
+'''
 INSTALLING COMPOSE
+'''
 # curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-
+'''
 
 HOST CONFIGS:
+'''
 robert@ubuntu:~$ cat docker-compose.yml
 version: '2'
 services:
@@ -201,14 +218,20 @@ services:
   red:
     image: redis
     container_name: redis
+'''
 
 robert@ubuntu:~$ cat Dockerfile
+
+'''
 FROM xidam/laratest:1.1
 WORKDIR /var/www/framework
 USER rob
 RUN bash -c 'source $HOME/local/php-version/php-version.sh; php-version 7 && phpunit'
+'''
 
 TEST RESULTS WITH DOCKER-COMPOSE
+
+'''
 robert@ubuntu:~$ sudo docker-compose up
 Building php
 Step 1 : FROM xidam/laratest:1.1
@@ -464,3 +487,4 @@ Predis\Connection\ConnectionException: Connection timed out [tcp://172.17.0.50:6
 ERRORS!
 Tests: 2426, Assertions: 5399, Errors: 10.
 ERROR: Service 'php' failed to build: The command '/bin/sh -c bash -c 'source $HOME/local/php-version/php-version.sh; php-version 7 && phpunit'' returned a non-zero code: 2
+'''
